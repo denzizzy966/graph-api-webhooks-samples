@@ -18,7 +18,7 @@ app.use(xhub({ algorithm: "sha256", secret: process.env.APP_SECRET }));
 app.use(bodyParser.json());
 
 var token = process.env.TOKEN || "token";
-var received_updates = "";
+var received_updates = [];
 
 app.get("/", function (req, res) {
   console.log(req.query);
@@ -35,7 +35,6 @@ app.get(["/facebook", "/instagram"], function (req, res) {
 
 app.post("/facebook", function (req, res) {
   console.log("Facebook request body:", req.body);
-  console.log(req);
 
   // Process the Facebook updates here
   received_updates.unshift(req.body);
